@@ -2,13 +2,21 @@ import networkx as nx
 import matplotlib.pyplot as plt
 import random
 
+# Define number of nodes and edges
+num_nodes = 10
+num_edges = 15
+
+# Create an empty graph
 G = nx.Graph()
-node_lst = [0,1,2,3,4,5,6,7,8,9]
-G.add_nodes_from(node_lst)
-for i in range(15):
-	a = random.randint(0, 9)
-	b = random.randint(0, 9)
-	while a in chosen and b in chosen and a != b:
-		a = random.randint(0,9)
-		b = random.randint(0, 9)
-	G.add_edge(a,b)
+
+# Add nodes
+G.add_nodes_from(range(num_nodes))
+
+edges = set()
+while len(edges) < num_edges:
+    u, v = random.sample(range(num_nodes), 2)  # Pick two distinct nodes
+    edges.add((u, v))
+G.add_edges_from(edges)
+
+nx.draw(G, with_labels=True)
+plt.show()
