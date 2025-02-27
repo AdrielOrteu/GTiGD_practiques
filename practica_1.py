@@ -1,5 +1,6 @@
 import networkx as nx
 import matplotlib.pyplot as plt
+from grafSimple import create_simple_graph, show_graph
 
 def build_last_graph ():
     graph = nx.Graph()
@@ -13,3 +14,21 @@ def build_last_graph ():
     return graph
 
 p1_graph = build_last_graph ()
+test_graph = create_simple_graph()
+show_graph(test_graph)
+
+node_id = 0
+if node_id in test_graph:
+    print(f"Node {node_id}: {list(test_graph.neighbors(node_id))}")
+else:
+    print(f"Node {node_id} not found.")
+print(test_graph.nodes)
+print(type(test_graph.nodes))
+print(list(test_graph.nodes)[0])
+
+def components_bfs (graph):
+    pass
+
+def components_dfs (graph):
+    pass
+
