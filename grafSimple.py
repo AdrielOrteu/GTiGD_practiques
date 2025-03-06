@@ -15,8 +15,8 @@ def create_simple_graph (num_nodes=10, num_edges=15):
     G.add_edges_from(edges)
     return G
 
-my_graph = create_simple_graph()
 
 def show_graph (graph):
     nx.draw(graph, with_labels=True)
     plt.show()
+
