@@ -30,5 +30,7 @@ def components_bfs (graph):
     pass
 
 def components_dfs (graph):
-    pass
+    node_list = list(graph.nodes)
+    while len(node_list) != 0:
+        pass
 
