@@ -31,7 +31,6 @@ def components_dfs (graph, current_node):
     node_list = list(graph.nodes)
     
     while len(node_list) > len(visited_nodes):
-        print(current_node)
         visited_nodes.add(current_node)
         adj_edges = list(graph.adj[current_node])
         
