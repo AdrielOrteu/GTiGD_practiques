@@ -29,12 +29,11 @@ def components_dfs (graph, current_node):
     dfs_dict = dict()
     visited_nodes = set()
     node_list = list(graph.nodes)
+    
     while len(node_list) > len(visited_nodes):
-        print()
-        print()
-        print(current_node)
         visited_nodes.add(current_node)
         adj_edges = list(graph.adj[current_node])
+        
         n=0
         while adj_edges[n] in visited_nodes and n < (len(adj_edges)-1):
             print(n)
@@ -48,5 +47,5 @@ def components_dfs (graph, current_node):
             current_node = adj_edges[n]
     return dfs_graph
 
-dfs_graph = components_dfs(test_graph, 0)
-show_graph(dfs_graph)
+dfs_graph = components_dfs(p1_graph, 0)
+#show_graph(dfs_graph)
