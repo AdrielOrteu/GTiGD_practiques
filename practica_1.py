@@ -1,3 +1,4 @@
+from collections import deque
 import networkx as nx
 import matplotlib.pyplot as plt
 from networkx import Graph
@@ -24,7 +25,20 @@ def tree_to_russian_doll(tree, head):
     pass
 
 def components_bfs (graph):
-    pass
+    lista_grupos = []
+    visitados = set()
+    
+    for nodo in graph.nodes():
+        if nodo not in visitados:
+            cola = deque([nodo])
+            grupo = []
+            actual = cola.popleft()
+            if actual not in visitados:
+                visitados.add(actual)
+                grupo.append(actual)
+                cola.extend(graph.neighbors(actual))
+            lista_grupos.append(grupo)
+    return lista_grupos
 
 def components_dfs (graph, current_node):
     dfs_graph = Graph()
@@ -50,4 +64,6 @@ def components_dfs (graph, current_node):
 
 a = list(p1_graph.nodes)
 test_G = components_dfs(p1_graph, a[0])
-# show_graph(test_G)
+show_graph(test_G)
+def tree_to_list():
+    pass
