@@ -20,6 +20,8 @@ test_graph = create_simple_graph()
 show_graph(test_graph)
 
 
+def tree_to_russian_doll(tree, head):
+    pass
 
 def components_bfs (graph):
     pass
