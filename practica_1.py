@@ -19,7 +19,7 @@ def build_last_graph ():
     return graph
 
 p1_graph = build_last_graph ()
-test_graph = create_simple_graph(15,17)
+test_graph = create_simple_graph(10,20)
 show_graph(test_graph)
 
 def timer(func):
@@ -33,67 +33,54 @@ def timer(func):
 
 
 def components_bfs (graph):
-    lista_grupos = []
-    visitados = set()
-    
-    for nodo in graph.nodes():
-        if nodo not in visitados:
-            cola = deque([nodo])
-            grupo = []
-            actual = cola.popleft()
-            if actual not in visitados:
-                visitados.add(actual)
-                grupo.append(actual)
-                cola.extend(graph.neighbors(actual))
-            lista_grupos.append(grupo)
-    return lista_grupos
+    pass
 
 @timer
 def components_dfs(graph):
-    node_list = list(graph.nodes)  # Lista con todos los nodos del grafo
-    current_node = node_list[0]  # Seleccionamos el primer nodo como punto de inicio
-    components_list = []  # Lista donde almacenaremos las componentes conexas
-    dfs_graph = Graph()  # Grafo que representará el árbol de búsqueda en profundidad (DFS)
-    dfs_dict = dict()  # Diccionario para registrar los padres de cada nodo en el DFS
-    visited_nodes = set()  # Conjunto para almacenar los nodos visitados
+    node_list = list(graph.nodes)
+    current_node = node_list[0]
+    components_list = []
+    dfs_graph = Graph()
+    dfs_list = list() #HERE
+    visited_nodes = set()
     
-    while len(node_list) != 0:  # Mientras haya nodos sin visitar
-        visited_nodes.add(current_node)  # Marcamos el nodo actual como visitado
+    while len(node_list) != 0:
+        visited_nodes.add(current_node)
         
         try:
-            node_list.remove(current_node)  # Eliminamos el nodo de la lista de nodos pendientes
+            node_list.remove(current_node)
         except ValueError:
-            pass  # Si el nodo ya fue eliminado, continuamos sin hacer nada
+            pass
         
-        adj_edges = list(graph.adj[current_node])  # Lista de vecinos del nodo actual
-        
-        n = 0  # Índice para recorrer la lista de vecinos
-        if len(adj_edges) > 0:  # Si el nodo tiene vecinos
-            while n < (len(adj_edges) - 1) and adj_edges[n] in visited_nodes:
-                n += 1  # Buscamos el primer vecino no visitado
+        adj_edges = list(set(graph.adj[current_node]) - set(visited_nodes))
+        if adj_edges:
             
-            if adj_edges[n] in visited_nodes:  # Si todos los vecinos han sido visitados
-                try:
-                    current_node = dfs_dict[current_node]  # Volvemos al nodo padre en el DFS
-                except KeyError:  # Si no hay nodo padre (inicio de un nuevo componente)
-                    components_list.append(list(visited_nodes))  # Guardamos la componente actual
-                    current_node = random.choice(node_list)  # Elegimos un nuevo nodo de inicio
-                    visited_nodes = set()  # Reiniciamos el conjunto de nodos visitados
+            
+            if adj_edges[0] in visited_nodes: # Comprueba que existe un nodo conectado no visitado #HERE
+                if dfs_list: # Si la lista dfs_list no esta vacia
+                    current_node = dfs_list.pop() # Volver al nodo anterior
+                else:
+                    components_list.append(list(visited_nodes))
+                    current_node = random.choice(node_list)
+                    visited_nodes = set()
             else:
-                dfs_dict[adj_edges[n]] = current_node  # Registramos el padre del nuevo nodo en DFS
-                dfs_graph.add_edge(current_node, adj_edges[n])  # Agregamos la arista al árbol DFS
-                current_node = adj_edges[n]  # Nos movemos al siguiente nodo
-        else:  # Si el nodo no tiene vecinos
-            dfs_graph.add_node(current_node)  # Lo añadimos como nodo aislado en el árbol DFS
-            components_list.append(list(visited_nodes))  # Guardamos la componente actual
-            visited_nodes = set()  # Reiniciamos el conjunto de nodos visitados
+                dfs_list.append(current_node) #HERE
+                dfs_graph.add_edge(current_node, adj_edges[0]) #HERE
+                current_node = adj_edges[0] #HERE
+        else:
+            dfs_graph.add_node(current_node)
+            components_list.append(list(visited_nodes))
+            visited_nodes = set()
             if len(node_list) > 0:
-                current_node = random.choice(node_list)  # Elegimos un nuevo nodo de inicio
+                current_node = random.choice(node_list)
+        # print(components_list)
+    if list(visited_nodes) not in components_list:
+        components_list.append(list(visited_nodes))
     
-    return dfs_graph, components_list  # Retornamos el árbol DFS y la lista de componentes conexas
+    return dfs_graph, components_list
 
-test_G, C_lst = components_dfs(test_graph)
-show_graph(test_G)
+test_G, C_lst = components_dfs(p1_graph)
+# show_graph(test_G)
 print(f"lista: {C_lst}")
 
 
