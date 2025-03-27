@@ -6,7 +6,7 @@ import typing
 def task_1():
     
     def simulate_coincidence(average, deviation):
-        deviation = deviation/2
+        deviation = deviation**3
         return average + deviation + average * deviation
     
     def how_many_cliques(n, average, deviation):
