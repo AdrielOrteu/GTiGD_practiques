@@ -1,9 +1,16 @@
 import networkx
 import random
+import typing
 
 
 def task_1():
-    pass
+    
+    def simulate_coincidence(average, deviation):
+        pass
+    
+    def how_many_cliques(n, average, deviation):
+        pass
+    
 
 
 def task_2():
