@@ -14,7 +14,10 @@ def task_1():
 
 
 def task_2():
-    pass
+    n = input("Introduce n: ")
+    m = input("Introduce m: ")
+    combinacion = intput("Introduce el código:")
+
 
 
 def task_3():
