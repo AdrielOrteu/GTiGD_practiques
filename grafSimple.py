@@ -17,7 +17,8 @@ def create_simple_graph (num_nodes=10, num_edges=15):
 
 
 def show_graph (graph):
-    nx.draw(graph, with_labels=True)
+    pos = nx.spring_layout(graph, seed=14)
+    nx.draw(graph, pos, with_labels=True)
     plt.show()
 
 
