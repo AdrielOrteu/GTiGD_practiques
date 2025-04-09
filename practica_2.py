@@ -22,11 +22,18 @@ def task_3():
     import matplotlib.colors as mpl
     G = create_simple_graph()
     # Apply greedy coloring
+    show_graph(G)
     graph_coloring = nx.greedy_color(G)
+    print(f"G (nodes) -> {G.nodes}")
+    print(f"graph_coloring -> {graph_coloring}")
+    for k in graph_coloring:
+        print(k)
+    print(f"graph_coloring.values() -> {graph_coloring.values()}")
     unique_colors = set(graph_coloring.values())
-    
+    print(f"unique_colors -> {unique_colors}")
     # Assign colors to nodes based on the greedy coloring
     graph_color_to_mpl_color = dict(zip(unique_colors, mpl.TABLEAU_COLORS))
+    print(f"graph_color_to_mpl_color -> {graph_color_to_mpl_color}")
     node_colors = [graph_color_to_mpl_color[graph_coloring[n]] for n in G.nodes()]
     
     pos = nx.spring_layout(G, seed=14)
