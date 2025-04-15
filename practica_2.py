@@ -1,7 +1,7 @@
 import networkx as nx
 import random
 import typing
-
+from grafSimple import *
 
 
 def task_1():
