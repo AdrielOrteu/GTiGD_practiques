@@ -2,10 +2,13 @@ import networkx as nx
 import random
 import typing
 from grafSimple import *
+from practica_1 import components_bfs
 
 
 def task_1():
-    G = create_simple_graph()
+    # G = create_simple_graph(20,10)
+    G = project_graph_create()
+    cliques_dict = dict()
     def simulate_coincidence(average=0.5, deviation=0.15):
         for edge in G.edges:
             w = random.normalvariate(average, deviation)
@@ -15,10 +18,21 @@ def task_1():
                 w = 1
             G[edge[0]][edge[1]]["weight"] = w
     
-    def how_many_cliques(n, average, deviation):
-        pass
-    
-    simulate_coincidence()
+    def how_many_cliques(n, average=0.5, deviation=0.15):
+        graph = nx.Graph()
+        edges = set()
+        for edge in G.edges:
+            if G[edge[0]][edge[1]]["weight"] >= n:
+                edges.add(edge)
+        graph.add_edges_from(edges)
+        graph_2, components_lst = components_bfs(graph=graph)
+        
+        for component in components_lst:
+            if len(component) in cliques_dict:
+                cliques_dict[len(component)] +=1
+            else:
+                cliques_dict[len(component)] = 1
+        return graph, graph_2
     
     def draw_weighted_graph(graph):
         """
@@ -39,8 +53,13 @@ def task_1():
         plt.title("Weighted Graph")
         plt.show()
     
-    draw_weighted_graph(G)
     
+    simulate_coincidence()
+    #draw_weighted_graph(G)
+    H, K = how_many_cliques(n=0.75)
+    #show_graph(H)
+    show_graph(K)
+    print(cliques_dict)
 
 
 def task_2():

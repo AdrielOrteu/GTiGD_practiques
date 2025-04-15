@@ -18,9 +18,9 @@ def build_last_graph ():
         graph.add_edges_from(edges)
     return graph
 
-p1_graph = build_last_graph ()
-test_graph = create_simple_graph(10,20)
-show_graph(test_graph)
+# p1_graph = build_last_graph ()
+# test_graph = create_simple_graph(10,20)
+# show_graph(test_graph)
 
 def timer(func):
     def wrapper(*args, **kwargs):
@@ -140,7 +140,7 @@ def test():
     for i in range(10):
         S += resilience(p1_graph)
     print(S/100)
-test()
+# test()
 #print(resilience_experiment(p1_graph,10))
 #test_G, C_lst = components_bfs(p1_graph)
 #show_graph(test_G)
