@@ -5,12 +5,41 @@ from grafSimple import *
 
 
 def task_1():
-    
-    def simulate_coincidence(average, deviation):
-        pass
+    G = create_simple_graph()
+    def simulate_coincidence(average=0.5, deviation=0.15):
+        for edge in G.edges:
+            w = random.normalvariate(average, deviation)
+            if w < 0:
+                w = 0
+            elif w > 1:
+                w = 1
+            G[edge[0]][edge[1]]["weight"] = w
     
     def how_many_cliques(n, average, deviation):
         pass
+    
+    simulate_coincidence()
+    
+    def draw_weighted_graph(graph):
+        """
+        Draws a weighted graph with labeled nodes and edge weights.
+        """
+        # Compute positions for the nodes
+        pos = nx.spring_layout(graph)
+        
+        # Draw nodes and edges
+        nx.draw(graph, pos, with_labels=True, node_color='lightblue', node_size=700, edge_color='gray')
+        
+        # Extract and draw edge weights
+        edge_labels = nx.get_edge_attributes(graph, 'weight')
+        edge_labels = {edge: f"{weight:.2f}" for edge, weight in edge_labels.items()}  # Format weights
+        nx.draw_networkx_edge_labels(graph, pos, edge_labels=edge_labels)
+        
+        # Show the plot
+        plt.title("Weighted Graph")
+        plt.show()
+    
+    draw_weighted_graph(G)
     
 
 
@@ -73,4 +102,4 @@ def task_3():
             # show_colored_graph(G)
 
 
-task_2()
+task_1()
