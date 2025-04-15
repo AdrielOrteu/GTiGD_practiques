@@ -2,7 +2,6 @@ import networkx as nx
 import matplotlib.pyplot as plt
 import random
 import time
-import pandas as pd
 
 def timer(func):
     def wrapper(*args, **kwargs):
@@ -16,7 +15,7 @@ def timer(func):
         return result
     return wrapper
 
-def create_simple_graph (num_nodes=10, num_edges=15):
+def create_simple_graph (num_nodes=10, num_edges=15, weighted=False):
     # Create an empty graph
     G = nx.Graph()
     # Add nodes
@@ -25,7 +24,11 @@ def create_simple_graph (num_nodes=10, num_edges=15):
     edges = set()
     while len(edges) < num_edges:
         u, v = random.sample(range(num_nodes), 2)  # Pick two distinct nodes
-        edges.add((u, v))
+        if weighted:
+            w = random.normalvariate(0.5, 0.15)
+            edges.add((u, v, w))
+        else:
+            edges.add((u, v))
     G.add_edges_from(edges)
     return G
 
