@@ -1,7 +1,7 @@
 import networkx as nx
 import random
 import typing
-from grafSimple import *
+
 
 
 def task_1():
@@ -30,8 +30,7 @@ def task_2():
         ganador.sort()
         intentos += 1
 
-    print("Has ganado tras {intentos} intentos.")
-
+    print(f"Has ganado tras {intentos} intentos.")
 
 
 
@@ -73,4 +72,5 @@ def task_3():
             print(f"num of colors needed: {len(unique_colors)}\ncolors used dictionary: {graph_coloring}")
             # show_colored_graph(G)
 
-task_3()
+
+task_2()
