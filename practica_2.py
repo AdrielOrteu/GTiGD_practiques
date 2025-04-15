@@ -26,7 +26,7 @@ def task_3():
     def greedy_coloring(graph):
         # Apply greedy coloring
         graph_coloring = nx.greedy_color(graph) # creates a dictionary where the keys are the nodes and the values are the colors
-        print(graph_coloring)
+        #print(graph_coloring)
         unique_colors = set(graph_coloring.values())
         return graph, graph_coloring, unique_colors
     
@@ -42,16 +42,16 @@ def task_3():
     
     
     test_list = [ [ (i**2, j**2) for j in range(2, i**2)] for i in range(10, 20)]
-    print(test_list)
+    #print(test_list)
     for test_group in test_list:
         for test in test_group:
-            print("\n###_NEW-TEST_###")
+            #print("\n###_NEW-TEST_###")
             G = create_simple_graph(test[0], test[1])
-            print(test)
+            #print(test)
             # show_graph(G)
             
             G, graph_coloring, unique_colors = greedy_coloring(G)
-            print(f"num of colors needed: {len(unique_colors)}\ncolors used dictionary: {graph_coloring}")
+            #print(f"num of colors needed: {len(unique_colors)}\ncolors used dictionary: {graph_coloring}")
             # show_colored_graph(G)
     
 task_3()

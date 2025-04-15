@@ -9,10 +9,10 @@ def timer(func):
         t1 = time.time()
         result = func(*args, **kwargs)
         t2 = time.time()
-        time_dataframe = pd.read_csv("Time.csv")
-        new_row = pd.DataFrame({t2 - t1})
-        df = pd.concat([df, new_row], ignore_index=True)
-        print(f"Execution time: {t2 - t1:.6f} seconds")
+        
+        with open("Time.csv", "a") as time_register:
+            time_register.write(f"node_num,edge_num,{t2 - t1:.6f}\n")
+        #print(f"Execution time: {t2 - t1:.6f} seconds")
         return result
     return wrapper
 
