@@ -8,9 +8,13 @@ def timer(func):
         t1 = time.time()
         result = func(*args, **kwargs)
         t2 = time.time()
-        
-        with open("Time.csv", "a") as time_register:
-            time_register.write(f"node_num,edge_num,{t2 - t1:.6f}\n")
+        delta_time = t2 - t1
+        if type(result) == tuple:
+            result = (*result, delta_time)
+        else:
+            result = (result, delta_time)
+        #with open("Time.csv", "a") as time_register:
+        #    time_register.write(f"node_num,edge_num,{t2 - t1:.6f}\n")
         #print(f"Execution time: {t2 - t1:.6f} seconds")
         return result
     return wrapper

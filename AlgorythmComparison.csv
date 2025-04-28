@@ -1,0 +1,16 @@
+Algorythm,avg_colors_needed,avg_time
+largest_first,16.0, 0.01240551471710205
+random_sequential,20.0, 0.011108803749084472
+smallest_last,15.0, 0.1227074146270752)
+independent_set,23.0, 136.28880503177643
+connected_sequential_bfs,21.0, 0.12520902156829833
+connected_sequential_dfs,18.0, 0.10120127201080323
+saturation_largest_first,16.0, 56.21229565143585
+############,############,############
+largest_first,18.0, 0.012407159805297852
+random_sequential,20.1,0.010921597480773926
+smallest_last,16.0,0.10406568050384521
+independent_set,23.0,93.61550703048707
+connected_sequential_bfs,20.0,0.06473424434661865
+connected_sequential_dfs,19.0,0.053322672843933105
+saturation_largest_first,16.0,50.3297782421112
